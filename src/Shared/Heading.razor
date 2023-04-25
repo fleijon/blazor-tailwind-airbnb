@@ -1,0 +1,19 @@
+<div class="@textCss">
+    <div class="text-2xl font-bold">
+        @Title
+    </div>
+    <div class="font-light text-neutral-500 mt-2">
+        @SubTitle
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool Center { get;set; }
+    [Parameter]
+    public string Title { get;set; } = "";
+    [Parameter]
+    public string SubTitle { get;set; } = "";
+
+    private string textCss => Center ? "text-center" : "text-start";
+}

@@ -1,0 +1,73 @@
+<div class="relative">
+    <div class="flex flex-row items-center gap-3">
+        <div class="
+            hidden
+            md:block
+            text-sm
+            font-semibold
+            py-3
+            px-4
+            rounded-full
+            hover:bg-neutral-100
+            transition
+            cursor-pointer">
+            Airbnb your home
+        </div>
+        <div
+            @onclick="@(() => isOpen = !isOpen)"
+         class="
+            p-4
+            md:py-1
+            md:px-1
+            border-[1px]
+            border-neutral-200
+            flex
+            flex-row
+            items-center
+            gap-3
+            rounded-full
+            cursor-pointer
+            hover:shadow-md
+            transition">
+            <MenuIcon Fill="black" />
+            <div class="hidden md:block">
+                <Avatar />
+            </div>
+            @if(isOpen)
+            {
+                <div class="
+                    absolute
+                    rounded-xl
+                    shadow-md
+                    w-[40vw]
+                    md:w-3/4
+                    bg-white
+                    overflow-hidden
+                    right-0
+                    top-16
+                    md:top-12
+                    text-sm">
+                    <div class="flex flex-col cursor-pointer">
+                        <div>
+                            <MenuItem Label="Login" OnClick="@(() => {})" />
+                        </div>
+                        <div>
+                            <MenuItem Label="Sign Up" OnClick="OpenRegisterModal" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject]
+    public StateContainers.RegisterModalState RegisterModalController { get;set; } = null!;
+
+    private void OpenRegisterModal()
+    {   
+        RegisterModalController.Property = StateContainers.IsOpen.True;
+    }
+    private bool isOpen;
+}

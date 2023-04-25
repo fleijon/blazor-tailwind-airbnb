@@ -1,0 +1,39 @@
+@using blazor_tailwind_airbnb.Shared.Inputs
+
+<div class="flex flex-col gap-4">
+    <Heading
+        title="Welcome to Airbnb"
+        subtitle="Create an account!"
+    />
+    <Input Id="email" Label="Email" Required=@(true) @bind-Value="@Email" @bind-Value:after="OnEmailChanged" />
+    <Input Id="name" Label="Name" Required=@(true) @bind-Value="@Name" @bind-Value:after="OnNameChanged" />
+    <Input Id="password" Label="Password" Required=@(true) @bind-Value="@Password" @bind-Value:after="OnPasswordChanged" />
+</div>
+
+@code {
+    [Parameter]
+    public string? Email { get;set; }
+    [Parameter]
+    public string? Name { get;set; }
+    [Parameter]
+    public string? Password { get;set; }
+    [Parameter]
+    public EventCallback<string?> EmailChanged { get; set; }
+    [Parameter]
+    public EventCallback<string?> NameChanged { get; set; }
+    [Parameter]
+    public EventCallback<string?> PasswordChanged { get; set; }
+
+    public async Task OnEmailChanged()
+    {
+        await EmailChanged.InvokeAsync(Email);
+    }
+    public async Task OnNameChanged()
+    {
+        await EmailChanged.InvokeAsync(Email);
+    }
+    public async Task OnPasswordChanged()
+    {
+        await EmailChanged.InvokeAsync(Email);
+    }
+}

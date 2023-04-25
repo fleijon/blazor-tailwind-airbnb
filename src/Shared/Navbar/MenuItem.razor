@@ -1,0 +1,12 @@
+<div 
+    @onclick="@(() => OnClick?.Invoke())"
+    class="px-4 py-3 hover:bg-neutral-100 transition font-semibold">
+    @Label
+</div>
+
+@code {
+    [Parameter]
+    public Action? OnClick { get;set; }
+    [Parameter]
+    public string Label { get;set; } = "";
+}

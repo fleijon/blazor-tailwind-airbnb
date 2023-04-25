@@ -1,0 +1,33 @@
+<button
+    @onclick=@((e) => { OnClick?.Invoke(e); })
+    disabled=@Disabled
+    class="
+        relative
+        disabled:opacity-70
+        disabled:cursor-not-allowed
+        rounded-lg
+        hover:opacity-80
+        transition
+        w-full
+        @outlineCss
+        @smallCss">
+    @Label
+</button>
+
+@code {
+    [Parameter]
+    public Action<MouseEventArgs>? OnClick { get;set; }
+    [Parameter]
+    public string? Label { get;set; }
+    [Parameter]
+    public bool Disabled { get;set; } = false;
+    [Parameter]
+    public bool Outline { get;set; } = false;
+    [Parameter]
+    public bool Small { get;set; } = false;
+    [Parameter]
+    public object? IconType { get;set; }
+
+    private string outlineCss => Outline ? "bg-white border-black text-black" : "bg-rose-500 border-rose-500 text-white";
+    private string smallCss =>  Small ? "py-1 text-sm font-light border-[1px]" : "py-3 text-md font-semibold border-2";
+}

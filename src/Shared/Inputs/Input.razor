@@ -1,0 +1,76 @@
+<div class="w-full relative">
+    @if(FormatPrice)
+    {
+        <DollarIcon class="text-neutral-700 absolute top-5 left-2" />
+    }
+    <input id="@Id"
+           disabled="@Disabled"
+           placeholder=" "
+           type="@Type"
+           value="@Value"
+           @oninput="OnValueChanged"
+           class="
+            block
+            peer
+            w-full
+            p-4
+            pt-6
+            font-light
+            bg-white
+            border-2
+            rounded-md
+            outline-none
+            transition
+            disabled:opacity-70
+            disabled:cursor-not-allowed
+            @paddingLeftCss" />
+    <label class="
+        absolute
+        text-md
+        duration-150
+        transform
+        -translate-y-4
+        top-5
+        z-10
+        origin-[0]
+        scale-75
+        @paddingLeftCss
+        @textColorCss
+        peer-placeholder-shown:scale-100
+        peer-placeholder-shown:translate-y-0
+        peer-focus:scale-75
+        peer-focus:-translate-y-4">
+        @Label
+    </label>
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get;set; } = "";
+    [Parameter]
+    public string Label { get;set; } = "";
+    [Parameter] 
+    public string Type { get;set; } = "text";
+    [Parameter]
+    public bool Disabled { get;set; } = false;
+    [Parameter]
+    public bool FormatPrice { get;set; } = false;
+    [Parameter]
+    public bool Required { get;set; } = false;
+    [Parameter]
+    public string? Value { get;set; }
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    private bool hasError => false;
+
+    private Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value?.ToString();
+
+        return ValueChanged.InvokeAsync(Value);
+    }
+
+    private string textColorCss => hasError ? "text-rose-500" : "text-zinc-400";
+    private string paddingLeftCss => FormatPrice ? "pl-9" : "pl-4";
+}
