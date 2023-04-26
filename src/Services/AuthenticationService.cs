@@ -4,9 +4,9 @@ public interface IAuthenticationService
 {
     event Action? LoginStatusChanged;
     bool IsLoggedIn { get; }
-    void Login();
+    void Login(string name, string password);
     void Logout();
-    Task Register();
+    Task<bool> Register(string email, string user, string password);
 }
 
 public class AuthneticationService : IAuthenticationService
@@ -15,7 +15,7 @@ public class AuthneticationService : IAuthenticationService
 
     public event Action? LoginStatusChanged;
 
-    public void Login()
+    public void Login(string name, string password)
     {
         IsLoggedIn = true;
 
@@ -29,8 +29,10 @@ public class AuthneticationService : IAuthenticationService
         LoginStatusChanged?.Invoke();
     }
 
-    public Task Register()
+    public async Task<bool> Register(string email, string user, string password)
     {
-        return Task.CompletedTask;
+        await Task.Delay(2000);
+
+        return true;
     }
 }

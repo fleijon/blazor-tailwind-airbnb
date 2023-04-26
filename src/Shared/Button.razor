@@ -1,4 +1,5 @@
 <button
+    type="@Type"
     @onclick=@((e) => { OnClick?.Invoke(e); })
     disabled=@Disabled
     class="
@@ -11,6 +12,10 @@
         w-full
         @outlineCss
         @smallCss">
+    @if(Icon != null)
+    {
+        @Icon
+    }
     @Label
 </button>
 
@@ -26,7 +31,9 @@
     [Parameter]
     public bool Small { get;set; } = false;
     [Parameter]
-    public object? IconType { get;set; }
+    public RenderFragment? Icon { get;set; }
+    [Parameter]
+    public string Type { get;set; } = "";
 
     private string outlineCss => Outline ? "bg-white border-black text-black" : "bg-rose-500 border-rose-500 text-white";
     private string smallCss =>  Small ? "py-1 text-sm font-light border-[1px]" : "py-3 text-md font-semibold border-2";

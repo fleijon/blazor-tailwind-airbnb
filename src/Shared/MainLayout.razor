@@ -1,9 +1,12 @@
-﻿@inherits LayoutComponentBase
+﻿@using blazor_tailwind_airbnb.Shared.Modals.Login
+@using blazor_tailwind_airbnb.Shared.Modals.Register
+@inherits LayoutComponentBase
 
 <PageTitle>blazor-tailwind-airbnb</PageTitle>
 
 <div class="page">
     <main>
+        <LoginModal />
         <RegisterModal />
         <Navbar />
         @Body

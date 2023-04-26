@@ -49,7 +49,7 @@
                     text-sm">
                     <div class="flex flex-col cursor-pointer">
                         <div>
-                            <MenuItem Label="Login" OnClick="@(() => {})" />
+                            <MenuItem Label="Login" OnClick="OpenLoginModal" />
                         </div>
                         <div>
                             <MenuItem Label="Sign Up" OnClick="OpenRegisterModal" />
@@ -64,10 +64,18 @@
 @code {
     [Inject]
     public StateContainers.RegisterModalState RegisterModalController { get;set; } = null!;
+    [Inject]
+    public StateContainers.LoginModalState LoginModalController { get;set; } = null!;
 
     private void OpenRegisterModal()
     {   
         RegisterModalController.Property = StateContainers.IsOpen.True;
     }
+
+    private void OpenLoginModal()
+    {
+        LoginModalController.Property = StateContainers.IsOpen.True;
+    }
+
     private bool isOpen;
 }
