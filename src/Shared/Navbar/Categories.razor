@@ -1,0 +1,13 @@
+@using blazor_tailwind_airbnb.Data;
+
+<Container>
+    <div class="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+        @foreach (var item in Data.CategoriesData.Categories)
+        {
+            var isSelected = item.Label == currentCategory;
+            var cssClass = isSelected ? "fill-neutral-800" : "fill-neutral-500 group-hover:fill-neutral-800 transition";
+            var renderArg = new CategoriesData.CategoryRenderArgs(cssClass);
+            <CategoryBox Label="@item.Label" Icon="@(item.Icon(@renderArg))" Selected="@(isSelected)" />
+        }
+    </div>
+</Container>

@@ -1,3 +1,5 @@
+@using blazor_tailwind_airbnb.Services
+
 <div class="relative">
     <div class="flex flex-row items-center gap-3">
         <div class="
@@ -48,12 +50,25 @@
                     md:top-12
                     text-sm">
                     <div class="flex flex-col cursor-pointer">
-                        <div>
-                            <MenuItem Label="Login" OnClick="OpenLoginModal" />
-                        </div>
-                        <div>
-                            <MenuItem Label="Sign Up" OnClick="OpenRegisterModal" />
-                        </div>
+                        @if(currentUser != null)
+                        {
+                            <MenuItem Label="My trips" OnClick="() => {}" />
+                            <MenuItem Label="My favorites" OnClick="() => {}" />
+                            <MenuItem Label="My reservations" OnClick="() => {}" />
+                            <MenuItem Label="My properties" OnClick="() => {}" />
+                            <MenuItem Label="Airbnb my home" OnClick="() => {}" />
+                            <hr />
+                            <MenuItem Label="Logout" OnClick="Logout" />
+                        }
+                        else
+                        {
+                            <div>
+                                <MenuItem Label="Login" OnClick="OpenLoginModal" />
+                            </div>
+                            <div>
+                                <MenuItem Label="Sign Up" OnClick="OpenRegisterModal" />
+                            </div>
+                        }
                     </div>
                 </div>
             }
@@ -66,6 +81,10 @@
     public StateContainers.RegisterModalState RegisterModalController { get;set; } = null!;
     [Inject]
     public StateContainers.LoginModalState LoginModalController { get;set; } = null!;
+    [Inject]
+    public IAuthenticationService AuthenticationService { get;set; } = null!;
+
+    private string? currentUser => AuthenticationService.CurrentUser;
 
     private void OpenRegisterModal()
     {   
@@ -75,6 +94,11 @@
     private void OpenLoginModal()
     {
         LoginModalController.Property = StateContainers.IsOpen.True;
+    }
+
+    private void Logout()
+    {
+        AuthenticationService.Logout();
     }
 
     private bool isOpen;

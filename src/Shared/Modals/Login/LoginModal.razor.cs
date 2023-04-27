@@ -23,6 +23,11 @@ public partial class LoginModal : IDisposable
         try
         {
             isLoading = true;
+            var result = await AuthenticationService.Login(
+                                    dataModel.Name ?? string.Empty,
+                                    dataModel.Password ?? string.Empty);
+            if(result)
+                LoginModalState.Property = StateContainers.IsOpen.False;
         }
         finally
         {
@@ -57,7 +62,5 @@ public partial class LoginModal : IDisposable
 
     private void OnOpenRegisterModalStateChange()
     {
-        IsOpen = RegisterModalState.Property.Value;
-        InvokeAsync(StateHasChanged);
     }
 }

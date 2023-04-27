@@ -1,11 +1,11 @@
 @using blazor_tailwind_airbnb.Shared.Inputs
 
-<Modal @bind-IsOpen="@IsOpen" Label="Login">
+<Modal @bind-IsOpen="@IsOpen" Label="Login" Disabled="isLoading">
     <div class="relative p-6 flex-auto">
         <div class="flex flex-col gap-4">
             <Heading
-                title="Welcome to Airbnb"
-                subtitle="Create an account!"
+                title="Welcome back!"
+                subtitle="Login to your account!"
             />
             <EditForm Model="@dataModel" OnValidSubmit="@HandleValidSubmit" class="flex flex-col gap-2" >
                 <DataAnnotationsValidator />

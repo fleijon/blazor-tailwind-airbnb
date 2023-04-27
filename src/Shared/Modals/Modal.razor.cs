@@ -12,6 +12,8 @@ public partial class Modal
     public EventCallback<bool> IsOpenChanged { get; set; }
     [Parameter]
     public RenderFragment? ChildContent { get;set; }
+    [Parameter]
+    public bool Disabled { get;set; }
     private const int transitionTime = 300; // Not configurable at the moment
 
     private bool showModal;
@@ -36,10 +38,8 @@ public partial class Modal
 
     private async Task HandleOnClose()
     {
-        /*
         if(Disabled)
             return;
-        */
 
         showModal = false;
         await Task.Delay(transitionTime);

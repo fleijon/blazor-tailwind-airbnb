@@ -47,3 +47,8 @@
 
     <ValidationMessage For="@ValidationFor" />
 </div>
+
+@code {
+    private string textColorCss => HasError() ? "text-rose-500" : "text-zinc-400";
+    private string paddingLeftCss => FormatPrice ? "pl-9" : "pl-4";
+}

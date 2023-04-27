@@ -542,6 +542,10 @@ video {
   left: 0.5rem;
 }
 
+.left-4 {
+  left: 1rem;
+}
+
 .left-9 {
   left: 2.25rem;
 }
@@ -554,16 +558,12 @@ video {
   top: 4rem;
 }
 
-.top-5 {
-  top: 1.25rem;
-}
-
-.left-4 {
-  left: 1rem;
-}
-
 .top-3 {
   top: 0.75rem;
+}
+
+.top-5 {
+  top: 1.25rem;
 }
 
 .z-10 {
@@ -701,6 +701,10 @@ video {
   overflow: hidden;
 }
 
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -747,6 +751,10 @@ video {
   border-right-width: 1px;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
 .border-b-\[1px\] {
   border-bottom-width: 1px;
 }
@@ -766,6 +774,15 @@ video {
   border-color: rgb(244 63 94 / var(--tw-border-opacity));
 }
 
+.border-transparent {
+  border-color: transparent;
+}
+
+.border-b-neutral-800 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(38 38 38 / var(--tw-border-opacity));
+}
+
 .bg-neutral-800\/70 {
   background-color: rgb(38 38 38 / 0.7);
 }
@@ -780,12 +797,24 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.fill-neutral-500 {
+  fill: #737373;
+}
+
+.fill-neutral-800 {
+  fill: #262626;
+}
+
 .p-1 {
   padding: 0.25rem;
 }
 
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .p-4 {
@@ -826,24 +855,28 @@ video {
   padding-bottom: 1rem;
 }
 
-.pl-4 {
-  padding-left: 1rem;
-}
-
 .pl-6 {
   padding-left: 1.5rem;
-}
-
-.pl-9 {
-  padding-left: 2.25rem;
 }
 
 .pr-2 {
   padding-right: 0.5rem;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.pl-9 {
+  padding-left: 2.25rem;
 }
 
 .text-center {
@@ -901,6 +934,11 @@ video {
   color: rgb(64 64 64 / var(--tw-text-opacity));
 }
 
+.text-neutral-800 {
+  --tw-text-opacity: 1;
+  color: rgb(38 38 38 / var(--tw-text-opacity));
+}
+
 .text-rose-500 {
   --tw-text-opacity: 1;
   color: rgb(244 63 94 / var(--tw-text-opacity));
@@ -914,11 +952,6 @@ video {
 .text-zinc-400 {
   --tw-text-opacity: 1;
   color: rgb(161 161 170 / var(--tw-text-opacity));
-}
-
-.text-neutral-800 {
-  --tw-text-opacity: 1;
-  color: rgb(38 38 38 / var(--tw-text-opacity));
 }
 
 .opacity-0 {
@@ -979,6 +1012,11 @@ body,
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
+.hover\:text-neutral-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(38 38 38 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -1008,6 +1046,10 @@ body,
 
 .disabled\:opacity-70:disabled {
   opacity: 0.7;
+}
+
+.group:hover .group-hover\:fill-neutral-800 {
+  fill: #262626;
 }
 
 .peer:-moz-placeholder-shown ~ .peer-placeholder-shown\:translate-y-0 {

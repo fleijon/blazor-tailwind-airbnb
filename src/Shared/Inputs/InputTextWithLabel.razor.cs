@@ -29,9 +29,6 @@ public partial class InputTextWithLabel
         return true;
     }
 
-    private string textColorCss => HasError() ? "text-rose-500" : "text-zinc-400";
-    private string paddingLeftCss => FormatPrice ? "pl-9" : "pl-4";
-
     private FieldIdentifier _fieldIdentifier;
 
     protected override void OnParametersSet()

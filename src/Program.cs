@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<RegisterModalState>();
+builder.Services.AddSingleton<LoginModalState>();
 builder.Services.AddSingleton<IAuthenticationService, AuthneticationService>();
 
 var app = builder.Build();
