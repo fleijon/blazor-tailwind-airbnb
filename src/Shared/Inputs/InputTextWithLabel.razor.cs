@@ -20,11 +20,11 @@ public partial class InputTextWithLabel
     public bool FormatPrice { get;set; } = false;
 
     protected override bool TryParseValueFromString(
-        string value,
+        string? value,
         [System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)] out string result,
         [System.Diagnostics.CodeAnalysis.NotNullWhen(false)] out string validationErrorMessage)
     {
-        result = value;
+        result = value ?? string.Empty;
         validationErrorMessage = null!;
         return true;
     }

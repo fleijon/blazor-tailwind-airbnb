@@ -7,7 +7,9 @@ namespace blazor_tailwind_airbnb.Shared.Modals.Register;
 public partial class RegisterModal : IDisposable
 {
     [Inject]
-    public RegisterModalState ModalState { get;set; } = null!;
+    public RegisterModalState RegisterModalState { get;set; } = null!;
+    [Inject]
+    public LoginModalState LoginModalState { get;set; } = null!;
     [Inject]
     public IAuthenticationService AuthenticationService { get;set; } = null!;
 
@@ -22,11 +24,14 @@ public partial class RegisterModal : IDisposable
         {
             isLoading = true;
             var result = await AuthenticationService.Register(
-                                    dataModel.Email ?? string.Empty,
-                                    dataModel.Name ?? string.Empty,
-                                    dataModel.Password ?? string.Empty);
+                                    dataModel.Email!,
+                                    dataModel.Name!,
+                                    dataModel.Password!);
             if(result)
-                ModalState.Property = StateContainers.IsOpen.False;
+            {
+                await AuthenticationService.Login(dataModel.Name!, dataModel.Password!);
+                RegisterModalState.Close();
+            }
         }
         finally
         {
@@ -34,9 +39,15 @@ public partial class RegisterModal : IDisposable
         }
     }
 
+    private void GoToLogin()
+    {
+        RegisterModalState.Close();
+        LoginModalState.Open();
+    }
+
     public void Dispose()
     {
-        ModalState.OnChange -= OnOpenStateChange;
+        RegisterModalState.OnChange -= OnOpenStateChange;
         GC.SuppressFinalize(this);
     }
 
@@ -48,12 +59,12 @@ public partial class RegisterModal : IDisposable
 
     protected override void OnInitialized()
     {
-        ModalState.OnChange += OnOpenStateChange;
+        RegisterModalState.OnChange += OnOpenStateChange;
     }
 
     private void OnOpenStateChange()
     {
-        IsOpen = ModalState.Property.Value;
+        IsOpen = RegisterModalState.Property.Value;
         InvokeAsync(StateHasChanged);
     }
 }

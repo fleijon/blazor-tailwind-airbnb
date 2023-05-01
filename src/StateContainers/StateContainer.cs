@@ -9,6 +9,13 @@ public abstract class StateContainer<T>
         get => _savedValue;
         set
         {
+            // TODO: Add the code below and make sure modals are toggled correctly after that
+
+            /*
+            if(_savedValue != null && _savedValue.Equals(value))
+                return;
+            */
+
             _savedValue = value;
             NotifyStateChanged();
         }

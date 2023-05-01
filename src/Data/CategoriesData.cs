@@ -41,6 +41,66 @@ public static class CategoriesData
                     builder.AddAttribute(1, "class", arg.CssClass);
                     builder.CloseComponent();
                 }
+            ),
+            new Category(
+                "Countryside",
+                "Description",
+                (arg) => (builder) =>
+                {
+                    builder.OpenComponent<ModernIcon>(0);
+                    builder.AddAttribute(1, "class", arg.CssClass);
+                    builder.CloseComponent();
+                }
+            ),
+            new Category(
+                "Pools",
+                "Description",
+                (arg) => (builder) =>
+                {
+                    builder.OpenComponent<ModernIcon>(0);
+                    builder.AddAttribute(1, "class", arg.CssClass);
+                    builder.CloseComponent();
+                }
+            ),
+            new Category(
+                "Islands",
+                "Description",
+                (arg) => (builder) =>
+                {
+                    builder.OpenComponent<ModernIcon>(0);
+                    builder.AddAttribute(1, "class", arg.CssClass);
+                    builder.CloseComponent();
+                }
+            ),
+            new Category(
+                "Lake",
+                "Description",
+                (arg) => (builder) =>
+                {
+                    builder.OpenComponent<ModernIcon>(0);
+                    builder.AddAttribute(1, "class", arg.CssClass);
+                    builder.CloseComponent();
+                }
+            ),
+            new Category(
+                "Skiing",
+                "Description",
+                (arg) => (builder) =>
+                {
+                    builder.OpenComponent<ModernIcon>(0);
+                    builder.AddAttribute(1, "class", arg.CssClass);
+                    builder.CloseComponent();
+                }
+            ),
+            new Category(
+                "Camping",
+                "Description",
+                (arg) => (builder) =>
+                {
+                    builder.OpenComponent<ModernIcon>(0);
+                    builder.AddAttribute(1, "class", arg.CssClass);
+                    builder.CloseComponent();
+                }
             )
         };
 }

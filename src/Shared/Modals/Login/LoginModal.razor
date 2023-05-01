@@ -14,7 +14,7 @@
                 <InputTextWithLabel Label="Password" Id="password" @bind-Value="@dataModel.Password" Type="password" ValidationFor="() => dataModel.Password" />
                 <div class="pt-6">
                     <div class="flex flex-row items-center w-full">
-                        <Button Label="Submit" Type="submit" Disabled="isLoading" />
+                        <Button Label="Login" Type="submit" Disabled="isLoading" />
                     </div>
                 </div>
             </EditForm>
@@ -33,12 +33,12 @@
                 </Button>
                 <div class="justify-center flex flex-row items-center gap-2 text-neutral-500 text-center mt-4 font-light">
                     <div>
-                        Already have an account?
+                        First time using Airbnb?
                     </div>
                     <div
-                        @onclick="OnClose"
+                        @onclick="GoToRegister"
                         class="text-neutral-800 cursor-pointer hover:underline">
-                        Log in
+                        Create an account
                     </div>
                 </div>
             </div>

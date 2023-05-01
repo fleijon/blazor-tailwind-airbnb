@@ -35,6 +35,12 @@ public partial class LoginModal : IDisposable
         }
     }
 
+    private void GoToRegister()
+    {
+        LoginModalState.Property = StateContainers.IsOpen.False;
+        RegisterModalState.Property = StateContainers.IsOpen.True;
+    }
+
     public void Dispose()
     {
         RegisterModalState.OnChange -= OnOpenRegisterModalStateChange;

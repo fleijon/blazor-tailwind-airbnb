@@ -1,0 +1,9 @@
+@inherits InputBase<string>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
+    @foreach (var category in Data.CategoriesData.Categories)
+    {
+        var isSelected = Value == category.Label;
+        <CategoryInput Label="@category.Label" Icon="@category.Icon" Selected="@isSelected" OnClick="@(() => OnSelected(category.Label))" />
+    }
+</div>

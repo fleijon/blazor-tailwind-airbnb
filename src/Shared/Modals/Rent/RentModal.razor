@@ -1,0 +1,21 @@
+@using blazor_tailwind_airbnb.Shared.Modals.Rent.Category
+@using blazor_tailwind_airbnb.Shared.Modals.Rent.Location
+
+<Modal Label="Airbnb your home!" @bind-IsOpen="@IsOpen">
+    <div class="relative p-6 flex-auto">
+        <div class="flex flex-col gap-4">
+            @if(currentStep == Step.Category)
+            {
+                <CategoryStep DataModel="@_category" StepId="0" OnValidSubmit="OnValidSubmitCategory"/>
+            }
+            else if(currentStep == Step.Location)
+            {
+                <LocationStep DataModel="@_location" StepId="1" OnValidSubmit="OnValidSubmitLocation" />
+            }
+        </div>
+        <div class="flex flex-row items-center gap-4 w-full py-6">
+            <Button Label="Back" OnClick="@((e) => Back())" />
+            <Button Label="Next" Type="submit" Form="@(((int)currentStep).ToString())" />
+        </div>
+    </div>
+</Modal>

@@ -1,0 +1,27 @@
+<div
+    @onclick="() => OnClick?.Invoke()"
+    class="
+        rounded-xl
+        border-2
+        p-4
+        flex
+        flex-col
+        gap-3
+        hover:border-black
+        transition
+        cursor-pointer
+        @borderCss"
+>
+    @if(Icon != null)
+    {
+        @(Icon(iconArgs))
+    }
+    <div class="font-semibold">
+        @Label
+    </div>
+</div>
+
+@code {
+    private string borderCss => Selected ? "border-black" : "border-neutral-200";
+    private Data.CategoriesData.CategoryRenderArgs iconArgs = new("h-8 w-8");
+}

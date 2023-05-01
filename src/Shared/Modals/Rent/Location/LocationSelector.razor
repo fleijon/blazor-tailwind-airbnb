@@ -1,0 +1,13 @@
+@inherits InputBase<string>
+
+<select @bind="@CurrentValue" class="w-full p-3 border-2 mt-4 rounded-md appearance-none" >
+    <option disabled selected value> -- select a location -- </option>
+    @foreach (var item in countries)
+    {
+        <option value="@item.Id">
+            <div>
+                @item.Name, @item.Region
+            </div>
+        </option>
+    }
+</select>

@@ -1,4 +1,5 @@
 <button
+    form="@Form"
     type="@Type"
     @onclick=@((e) => { OnClick?.Invoke(e); })
     disabled=@Disabled
@@ -20,6 +21,8 @@
 </button>
 
 @code {
+
+    private string? form => string.IsNullOrWhiteSpace(Form) ? null : Form;
     [Parameter]
     public Action<MouseEventArgs>? OnClick { get;set; }
     [Parameter]
@@ -34,6 +37,8 @@
     public RenderFragment? Icon { get;set; }
     [Parameter]
     public string Type { get;set; } = "";
+    [Parameter]
+    public string Form { get;set; }
 
     private string outlineCss => Outline ? "bg-white border-black text-black" : "bg-rose-500 border-rose-500 text-white";
     private string smallCss =>  Small ? "py-1 text-sm font-light border-[1px]" : "py-3 text-md font-semibold border-2";
