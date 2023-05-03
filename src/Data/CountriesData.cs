@@ -9,6 +9,6 @@ public static class CountriesData
         {"AT", new Country("AT", "Austria", "Europe", 47.516231, 14.550072)},
         {"FI", new Country("FI", "Finland", "Europe", 61.92411, 25.748151)},
         {"IN", new Country("IN", "India", "Asia", 20.593684, 78.96288)},
-        {"SE", new Country("SE", "Sweden", "Europe", 60.128161, 60.128161)}
+        {"SE", new Country("SE", "Sweden", "Europe", 60, 18)}
     };
 }

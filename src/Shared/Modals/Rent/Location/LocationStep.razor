@@ -1,21 +1,15 @@
+@using blazor_tailwind_airbnb.InteractiveMap
 <EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(() => OnValidSubmit?.Invoke(@DataModel))" >
     <DataAnnotationsValidator />
     <ValidationSummary />
     <Heading Title="Where is your place located?"
             SubTitle="Help guests find you!" />
     <div class="flex flex-col gap-8">
-        <LocationSelector @bind-Value="@DataModel.Location" />
+        <LocationSelector @bind-Value="@DataModel.Location" @bind-Value:after="UpdateMap" />
+        <LeafletMap Map="@map" TileLayer="@tile" ClassCss="@mapCss" />
     </div>
 </EditForm>
 
-@code {
-    [Parameter]
-    public Action<LocationModel>? OnValidSubmit { get;set; }
-
-    [EditorRequired]
-    [Parameter]
-    public string StepId { get;set; } = null!;
-
-    [Parameter]
-    public LocationModel DataModel { get;set; } = new();
+@code{
+    private string mapCss = "w-full h-[35vh] rounded-lg";
 }

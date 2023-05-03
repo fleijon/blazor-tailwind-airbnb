@@ -12,10 +12,14 @@
             {
                 <LocationStep DataModel="@_location" StepId="1" OnValidSubmit="OnValidSubmitLocation" />
             }
-        </div>
-        <div class="flex flex-row items-center gap-4 w-full py-6">
-            <Button Label="Back" OnClick="@((e) => Back())" />
-            <Button Label="Next" Type="submit" Form="@(((int)currentStep).ToString())" />
+
+            <div class="flex flex-row items-center gap-4 w-full">
+                @if(currentStep != 0)
+                {
+                    <Button Label="Back" OnClick="@((e) => Back())" />
+                }
+                <Button Label="Next" Type="submit" Form="@(((int)currentStep).ToString())" />
+            </div>
         </div>
     </div>
 </Modal>

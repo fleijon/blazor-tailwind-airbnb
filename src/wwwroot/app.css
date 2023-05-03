@@ -616,6 +616,10 @@ video {
   height: 2rem;
 }
 
+.h-\[35vh\] {
+  height: 35vh;
+}
+
 .h-full {
   height: 100%;
 }
@@ -883,11 +887,6 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 
 .pl-4 {
