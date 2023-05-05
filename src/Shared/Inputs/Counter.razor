@@ -1,0 +1,51 @@
+@inherits InputBase<int>
+
+<div class="flex flex-row items-center justify-between">
+    <div class="flex flex-col">
+        <div class="font-medium">
+            @Title
+        </div>
+        <div class="font-light text-gray-600">
+            @SubTitle
+        </div>
+    </div>
+    <div class="flex flex-row items-center gap-4">
+        <div @onclick="Reduce"
+             class="
+                w-10
+                h-10
+                rounded-full
+                border-[1px]
+                border-neutral-400
+                flex
+                items-center
+                justify-center
+                text-neutral-600
+                hover:opacity-70
+                transition">
+            <MinusIcon />
+        </div>
+        <div class="font-light text-ml @textColor">
+            @Value
+        </div>
+        <div @onclick="Add"
+             class="
+                w-10
+                h-10
+                rounded-full
+                border-[1px]
+                border-neutral-400
+                flex
+                items-center
+                justify-center
+                text-neutral-600
+                hover:opacity-70
+                transition">
+            <PlusIcon />
+        </div>
+    </div>
+</div>
+
+@code {
+    private string textColor => HasError() ? "text-red-500" : "text-neutral-600"; // TODO: Change color back to neutral if user increment value to a valid value
+}

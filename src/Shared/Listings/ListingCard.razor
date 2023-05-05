@@ -1,0 +1,41 @@
+<div class="col-span-1 cursor-pointer group"
+     >
+     <div class="flex flex-col gap-2 w-full">
+        <div class=
+            "
+             aspect-square
+             w-full
+             relative
+             overflow-hidden
+             rounded-xl
+        ">
+          <img alt="Listing" src="@imageSource"
+               class="object-hover h-full w-full group-hover:scale-110 transition duration-300"
+               @onclick="NavigateToListing"
+                 />
+          @if(CurrentUser != null)
+          {
+               <div class="absolute top-3 right-3">
+                    <HeartButton Listing="@Listing.ListingId" CurrentUser="@CurrentUser" />
+               </div>
+          }
+          </div>
+          <div class="font-semibold text-lg">
+               @location?.Region, @location?.Name
+          </div>
+          <div class="font-light text-neutral-500">
+               @(reservationDate ?? Listing.Category.Value)
+          </div>
+          <div class="flex flex-row items-center gap-1">
+               <div class="font-semibold">
+                    $ @price
+               </div>
+               @if(Reservation != null)
+               {
+                    <div class="font-light">
+                         night
+                    </div>
+               }
+          </div>
+     </div>
+</div>

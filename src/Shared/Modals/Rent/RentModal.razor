@@ -1,5 +1,9 @@
 @using blazor_tailwind_airbnb.Shared.Modals.Rent.Category
+@using blazor_tailwind_airbnb.Shared.Modals.Rent.Description
+@using blazor_tailwind_airbnb.Shared.Modals.Rent.Images
+@using blazor_tailwind_airbnb.Shared.Modals.Rent.Info
 @using blazor_tailwind_airbnb.Shared.Modals.Rent.Location
+@using blazor_tailwind_airbnb.Shared.Modals.Rent.Price
 
 <Modal Label="Airbnb your home!" @bind-IsOpen="@IsOpen">
     <div class="relative p-6 flex-auto">
@@ -12,14 +16,35 @@
             {
                 <LocationStep DataModel="@_location" StepId="1" OnValidSubmit="OnValidSubmitLocation" />
             }
+            else if(currentStep == Step.Info)
+            {
+                <InfoStep DataModel="@_info" StepId="2" OnValidSubmit="OnValidSubmitInfo" />
+            }
+            else if(currentStep == Step.Images)
+            {
+                <ImagesStep DataModel="@_image" StepId="3" OnValidSubmit="OnValidSubmitImage" />
+            }
+            else if(currentStep == Step.Description)
+            {
+                <DescriptionStep DataModel="@_description" StepId="4" OnValidSubmit="OnValidSubmitDescription" />
+            }
+            else if(currentStep == Step.Price)
+            {
+                <PriceStep DataModel="@_price" StepId="5" OnValidSubmit="OnValidSubmitPrice" Disabled="@isLoading" />
+            }
 
             <div class="flex flex-row items-center gap-4 w-full">
                 @if(currentStep != 0)
                 {
-                    <Button Label="Back" OnClick="@((e) => Back())" />
+                    <Button Label="Back" OnClick="@((e) => Back())" Outline="true" />
                 }
-                <Button Label="Next" Type="submit" Form="@(((int)currentStep).ToString())" />
+                <Button Label="@NextButtonLabel" Type="submit" Form="@(((int)currentStep).ToString())" />
             </div>
         </div>
     </div>
 </Modal>
+
+
+@code {
+    private string NextButtonLabel => isLastStep ? "Create" : "Next";
+}

@@ -1,6 +1,9 @@
-<EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(() => OnValidSubmit?.Invoke(@DataModel))">
+@inherits StepTemplate<CategoryModel>
+
+<EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(async () => await OnValidSubmit?.Invoke(@DataModel))">
     <DataAnnotationsValidator />
     <ValidationSummary />
+
     <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-8">
             <Heading Title="Which of these best describes your place?"
@@ -10,17 +13,3 @@
         </div>
     </div>
 </EditForm>
-
-@code {
-
-    [Parameter]
-    public Action<CategoryModel>? OnValidSubmit { get;set; }
-
-    [EditorRequired]
-    [Parameter]
-    public string StepId { get;set; } = null!;
-
-    [Parameter]
-    public CategoryModel DataModel { get;set; } = new();
-}
-

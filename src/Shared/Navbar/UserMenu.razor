@@ -89,7 +89,7 @@
     [Inject]
     public IAuthenticationService AuthenticationService { get;set; } = null!;
 
-    private string? currentUser => AuthenticationService.CurrentUser;
+    private User? currentUser => AuthenticationService.CurrentUser;
 
     private void OpenRegisterModal()
     {   

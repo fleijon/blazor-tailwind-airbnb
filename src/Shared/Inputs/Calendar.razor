@@ -1,0 +1,8 @@
+@using BlazorDateRangePicker
+@inherits InputBase<DateRangeLocal?>
+
+<div class="flex flex-col gap-2 font-light text-neutral-500">
+    <div class="p-2">
+        <DateRangePicker placeholder="Select dates..." @bind-StartDate="StartDate" @bind-EndDate="EndDate" OnRangeSelect="OnRangeSelect" style="width:13em" />
+    </div>
+</div>

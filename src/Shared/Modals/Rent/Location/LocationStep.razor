@@ -1,5 +1,7 @@
 @using blazor_tailwind_airbnb.InteractiveMap
-<EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(() => OnValidSubmit?.Invoke(@DataModel))" >
+@inherits StepTemplate<LocationModel>
+
+<EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(async () => await OnValidSubmit?.Invoke(@DataModel))" >
     <DataAnnotationsValidator />
     <ValidationSummary />
     <Heading Title="Where is your place located?"

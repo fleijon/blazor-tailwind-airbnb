@@ -1,0 +1,45 @@
+@inherits InputBase<string?>
+
+<div class="">
+    <label
+     for="file-upload"
+     class="
+            group
+            relative
+            cursor-pointer
+            hover:opacity-70
+            transition
+            border-dashed
+            border-2
+            p-20
+            @borderCss
+            flex
+            flex-col
+            justify-center
+            items-center
+            gap-4
+            fill-neutral-600
+            text-neutral-600">
+        <div class="flex flex-col items-center @hoverCss">
+            <ImageIcon class="w-14 h-14" />
+            <div class="font-semibold text-lg">
+                Click to upload
+            </div>
+        </div>
+        <div class="absolute inset-0 w-full h-full flex flex-row items-center justify-center">
+            @if(ImageSource != null)
+            {
+                <img id="image" src="@ImageSource" alt="House" style="object-fit: contain; max-height:100%; max-width:100%;" />
+            }
+        </div>
+    </label>
+
+    <InputFile id="file-upload" OnChange="@LoadImage" style="display: none" />
+</div>
+
+
+@code {
+
+    private string hoverCss => ImageSource is null ? "" : "group-hover:text-white group-hover:z-50 group-hover:fill-white";
+    private string borderCss => HasError() ? "border-red-500" : "border-neutral-300";
+}

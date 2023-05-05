@@ -9,7 +9,7 @@ namespace blazor_tailwind_airbnb.InteractiveMap;
 public partial class LeafletMap : ComponentBase
 {
     [Inject]
-    public IJSRuntime JSRuntime { get; set; }
+    public IJSRuntime JSRuntime { get; set; } = null!;
 
     [EditorRequired]
     [Parameter]

@@ -1,7 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq.Expressions;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 
 namespace blazor_tailwind_airbnb.Shared.Modals.Rent.Location;
 

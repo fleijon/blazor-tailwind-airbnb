@@ -1,0 +1,18 @@
+@using blazor_tailwind_airbnb.Shared.Inputs
+@inherits StepTemplate<InfoModel>
+
+<EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(async () => await OnValidSubmit?.Invoke(@DataModel))" >
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="flex flex-col gap-8 py-6">
+        <Heading Title="Share some basics about your place"
+                SubTitle="What amenities do you have?">
+        </Heading>
+        <Counter Title="Guests" SubTitle="How many guests do you allow?" ValidationFor="() => DataModel.Guests" @bind-Value="@DataModel.Guests" />
+        <hr />
+        <Counter Title="Rooms" SubTitle="How many rooms do you have?" ValidationFor="() => DataModel.Rooms" @bind-Value="@DataModel.Rooms" />
+        <hr />
+        <Counter Title="Bathrooms" SubTitle="How many bathrooms do you have?" ValidationFor="() => DataModel.Bathrooms" @bind-Value="@DataModel.Bathrooms" />
+    </div>
+</EditForm>

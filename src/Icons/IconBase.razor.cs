@@ -7,7 +7,7 @@ public abstract partial class IconBase : ComponentBase
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? InputAttributes { get; set; }
     [Parameter]
-    public string Fill { get;set; } = "#FFFFFF";
+    public string Fill { get;set; } = "#FFFFFF"; // TODO: Remove Fill property, it is not used
 
     public abstract string SVGCode { get; }
 }

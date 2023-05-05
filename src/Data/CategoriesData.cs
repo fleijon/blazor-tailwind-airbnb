@@ -5,8 +5,10 @@ namespace blazor_tailwind_airbnb.Data;
 
 public static class CategoriesData
 {
+    // TODO: Rename description
     public record Category(string Label, string Descrtiption , RenderFragment<CategoryRenderArgs> Icon);
 
+    // TODO: Should be possible to change the size also
     public readonly record struct CategoryRenderArgs(string CssClass);
 
     public static IEnumerable<Category> Categories =>

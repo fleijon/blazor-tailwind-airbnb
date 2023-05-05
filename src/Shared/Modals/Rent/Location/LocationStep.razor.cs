@@ -4,20 +4,10 @@ using Microsoft.JSInterop;
 
 namespace blazor_tailwind_airbnb.Shared.Modals.Rent.Location;
 
-public partial class LocationStep
+public partial class LocationStep : StepTemplate<LocationModel>
 {
     [Inject]
     public IJSRuntime JSRuntime { get; set; } = null!;
-
-    [Parameter]
-    public Action<LocationModel>? OnValidSubmit { get;set; }
-
-    [EditorRequired]
-    [Parameter]
-    public string StepId { get;set; } = null!;
-
-    [Parameter]
-    public LocationModel DataModel { get;set; } = new();
 
     private Map map;
     private TileLayer? tile;
@@ -25,7 +15,6 @@ public partial class LocationStep
     protected override void OnParametersSet()
     {
         // TODO: Refactor
-
         if(DataModel.Location is null)
         {
             map = new Map(mapId, new MapOptions
@@ -53,7 +42,7 @@ public partial class LocationStep
         );
     }
 
-    private async Task UpdateMap() {
+    private void UpdateMap() {
         if(DataModel?.Location == null)
             return;
 

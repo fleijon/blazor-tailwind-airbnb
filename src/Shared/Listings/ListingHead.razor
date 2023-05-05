@@ -1,0 +1,42 @@
+<Heading Title="@Title" SubTitle="@subTitle" />
+
+<div class="w-full h-[60vh] overflow-hidden relative">
+    <img alt="Image" src="@imageBase64" fill class="object-cover w-full" >
+    @if(CurrentUser.HasValue && ListingId.HasValue)
+    {
+        <div class="absolute right-5 top-5">
+            <HeartButton Listing="@(ListingId.Value)" CurrentUser="@(CurrentUser.Value.Id)" />
+        </div>
+    }
+</div>
+
+
+@code {
+    [Inject]
+    public Services.IListingsService ListingsService { get;set; } = null!;
+    [Parameter]
+    public string? Title { get;set; }
+    [Parameter]
+    public string? LocationCode { get;set; }
+    [Parameter]
+    public Base64Image? Image { get;set; }
+    [Parameter]
+    public ListingId? ListingId { get;set; }
+    [Parameter]
+    public User? CurrentUser { get;set; }
+
+    private string? subTitle => location is null ? string.Empty : $"{location.Region}, {location.Name}";
+    private Country? location;
+    private Listing? listing;
+    private string imageBase64 => listing is null ? string.Empty : $"data:image/png;base64,{listing.Value.Image.Base64}";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if(LocationCode is not null)
+            location = Data.CountriesData.Countries[LocationCode];
+
+        if(ListingId.HasValue)
+            listing = await ListingsService.GetListing(ListingId.Value);
+    }
+}
+

@@ -1,0 +1,16 @@
+@using blazor_tailwind_airbnb.Shared.Inputs
+@inherits StepTemplate<PriceModel>
+
+<EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(async () => await OnValidSubmit?.Invoke(@DataModel))">
+    <DataAnnotationsValidator />
+
+    <div class="flex flex-col gap-8">
+        <Heading Title="Set your price!" SubTitle="How much do you charge per night?" />
+        <InputTextWithLabel FormatPrice="true" @bind-Value="@DataModel.Price" Type="number" ValidationFor="() => DataModel.Price" Label="Price" Disabled="@Disabled" />
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public bool Disabled { get;set; }
+}

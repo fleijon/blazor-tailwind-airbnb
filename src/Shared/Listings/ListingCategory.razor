@@ -1,0 +1,19 @@
+<div class="flex flex-col gap-6">
+    <div class="flex flex-row items-center gap-4">
+        @(Category.Icon(new Data.CategoriesData.CategoryRenderArgs("text-neutral-600")))
+        <div class="flex flex-col">
+            <div class="text-lg font-semibold">
+                @Category.Label
+            </div>
+            <div class="text-neutral-500 font-light">
+                @Category.Descrtiption
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [EditorRequired]
+    [Parameter]
+    public Data.CategoriesData.Category Category { get;set; }
+}

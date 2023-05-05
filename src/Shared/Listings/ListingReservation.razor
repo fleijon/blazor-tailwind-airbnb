@@ -1,0 +1,30 @@
+@using blazor_tailwind_airbnb.Shared.Inputs
+
+<div class="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
+    <div class="flex flex-row items-center gap-1 p-4">
+        <div class="text-2xl font-semibold">
+            $ @Price.Value
+        </div>
+        <div class="font-light text-neutral-600">
+            night
+        </div>
+    </div>
+    <hr />
+    <Calendar @bind-Value="@dateRange"/>
+</div>
+
+
+@code {
+    [Parameter]
+    public Price Price { get;set; }
+    [Parameter]
+    public Price TotalPrice { get;set; }
+    [Parameter]
+    public DateRangeLocal DateRange { get;set; }
+    [Parameter]
+    public bool Disabled { get;set; }
+    [Parameter]
+    public bool DisabledDates { get;set; }
+
+    private DateRangeLocal? dateRange;
+}

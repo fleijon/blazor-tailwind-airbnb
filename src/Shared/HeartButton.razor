@@ -1,0 +1,12 @@
+@using blazor_tailwind_airbnb.Services;
+
+<div @onclick="ToggleFavorite"
+     class="relative hover:opacity-80 transition cursor-pointer" >
+    <HeartOutlinedIcon class="fill-white absolute -top-[2px] -right-[2px] w-12 h-12" />
+    <HeartFilledIcon class="@heartFilledCss"/>
+</div>
+
+@code {
+    private string heartFilledCss => $"w-11 h-11 {fillCss}";
+    private string fillCss => hasFavorited ? "fill-rose-500" : "fill-neutral-500/70";
+}

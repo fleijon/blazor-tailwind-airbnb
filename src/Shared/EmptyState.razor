@@ -1,0 +1,25 @@
+<div class="h-[60vh] flex flex-col gap-2 justify-center items-center">
+    <Heading Title="@Title" SubTitle="@SubTitle" Center />
+    <div class="w-48 mt-4">
+        @if(ShowReset)
+        {
+            <Button Outline Label="Remove all filters" OnClick="(_) => Navigate()" />
+        }
+    </div>
+</div>
+
+@code {
+    [Inject]
+    public NavigationManager NavigationManager { get;set; } = null!;
+    [Parameter]
+    public string Title { get;set; } = "No exact matches";
+    [Parameter]
+    public string SubTitle { get;set; } = "Try changing or removing some of your filters";
+    [Parameter]
+    public bool ShowReset { get;set; }
+
+    private void Navigate()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

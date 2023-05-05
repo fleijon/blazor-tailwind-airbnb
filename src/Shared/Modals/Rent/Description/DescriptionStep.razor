@@ -1,0 +1,17 @@
+@using blazor_tailwind_airbnb.Shared.Inputs
+@inherits StepTemplate<DescriptionModel>
+
+<EditForm id="@StepId" Model="DataModel" OnValidSubmit="@(async () => await OnValidSubmit?.Invoke(@DataModel))">
+    <DataAnnotationsValidator />
+
+    <div class="flex flex-col gap-8">
+        <Heading Title="How would you describe your place?" />
+        <InputTextWithLabel @bind-Value="@DataModel.Title" ValidationFor="() => DataModel.Title" Label="Title" />
+        <hr />
+        <InputTextWithLabel @bind-Value="@DataModel.Description" ValidationFor="() => DataModel.Description" Label="Description" />
+    </div>
+</EditForm>
+
+@code
+{
+}

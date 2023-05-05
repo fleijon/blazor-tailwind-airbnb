@@ -24,6 +24,7 @@
             transition
             disabled:opacity-70
             disabled:cursor-not-allowed
+            @borderColorCss
             @paddingLeftCss" />
     <label class="
         absolute
@@ -49,5 +50,6 @@
 
 @code {
     private string textColorCss => HasError() ? "text-rose-500" : "text-zinc-400";
+    private string borderColorCss => HasError() ? "border-rose-500 focus:border-rose-500" : "border-neutral-300 focus:border-black";
     private string paddingLeftCss => FormatPrice ? "pl-9" : "pl-4";
 }

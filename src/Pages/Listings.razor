@@ -1,0 +1,30 @@
+@page "/listings/{listingId:guid}"
+@using blazor_tailwind_airbnb.Shared.Listings
+@using blazor_tailwind_airbnb.Services;
+
+<div>
+    <ListingClient CurrentUser="@currentUser" Listing="@(listing.Value)" />
+</div>
+
+@code {
+    [Inject]
+    public IListingsService ListingsService { get;set; } = null!;
+    [Inject]
+    public IAuthenticationService AuthenticationService { get;set; } = null!;
+    [Inject]
+    public IUsers Users { get;set; } = null!;
+    [Parameter]
+    public Guid? ListingId { get;set; }
+
+    private Listing? listing;
+    private User? currentUser;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if(ListingId.HasValue)
+            listing = await ListingsService.GetListing(new ListingId(ListingId.Value));
+
+        currentUser = AuthenticationService.CurrentUser;
+    }
+}
+

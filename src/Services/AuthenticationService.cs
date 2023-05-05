@@ -1,8 +1,10 @@
+using blazor_tailwind_airbnb.Models;
+
 namespace blazor_tailwind_airbnb.Services;
 
 public interface IAuthenticationService
 {
-    string? CurrentUser { get; }
+    User? CurrentUser { get; }
     event Action? LoginStatusChanged;
     bool IsLoggedIn { get; }
     Task<bool> Login(string name, string password);
@@ -10,18 +12,30 @@ public interface IAuthenticationService
     Task<bool> Register(string email, string user, string password);
 }
 
-public class AuthneticationService : IAuthenticationService
+public class AuthenticationService : IAuthenticationService
 {
+    private readonly IUsers _users;
+
+    public AuthenticationService(IUsers users)
+    {
+        _users = users;
+    }
+
     public bool IsLoggedIn { get;set; }
 
-    public string? CurrentUser { get; private set; }
+    public User? CurrentUser { get; private set; }
 
     public event Action? LoginStatusChanged;
 
     public async Task<bool> Login(string name, string password)
     {
+        var user = await _users.GetUserByUsername(name);
+
+        if(user == null)
+            return false;
+
         IsLoggedIn = true;
-        CurrentUser = name;
+        CurrentUser = user;
 
         await Task.Delay(1000);
 
@@ -38,10 +52,12 @@ public class AuthneticationService : IAuthenticationService
         LoginStatusChanged?.Invoke();
     }
 
-    public async Task<bool> Register(string email, string user, string password)
+    public async Task<bool> Register(string email, string username, string password)
     {
-        await Task.Delay(2000);
+        var user = await _users.AddUser(username, email);
+        if(user is null)
+            return false;
 
-        return true;
+        return await Login(username, password);
     }
 }

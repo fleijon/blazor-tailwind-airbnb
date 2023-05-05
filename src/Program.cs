@@ -10,7 +10,10 @@ builder.Services.AddSingleton<RegisterModalState>();
 builder.Services.AddSingleton<LoginModalState>();
 builder.Services.AddSingleton<RentModalState>();
 
-builder.Services.AddSingleton<IAuthenticationService, AuthneticationService>();
+builder.Services.AddSingleton<IUsers, Users>();
+builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+builder.Services.AddSingleton<IListingsService, ListingService>();
+builder.Services.AddSingleton<IWishlist, Wishlist>();
 
 var app = builder.Build();
 

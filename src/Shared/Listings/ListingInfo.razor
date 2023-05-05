@@ -1,0 +1,86 @@
+@using blazor_tailwind_airbnb.InteractiveMap
+<div class="col-span-4 flex flex-col gap-8">
+    <div class="flex flex-col gap-2">
+        @if(HostUser.HasValue)
+        {
+            <div class="text-xl font-semibold flex flex-row items-center gap-2">
+                <div>
+                    Hosted by @HostUser.Value.Name
+                </div>
+            </div>
+        }
+        @if(LocationInfo.HasValue)
+        {
+            <div class="flex flex-row items-center gap-4 font-light text-neutral-500">
+                <div>
+                    @LocationInfo.Value.Guests guests
+                </div>
+                <div>
+                    @LocationInfo.Value.Rooms rooms
+                </div>
+                <div>
+                    @LocationInfo.Value.Bathrooms bathrooms
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+    @if(Category.HasValue)
+    {
+        <ListingCategory Category="@category" />
+    }
+    <hr />
+    <div class="text-lg font-light text-neutral-500">
+        @Description.Value.Title
+    </div>
+    <hr />
+    <LeafletMap Map="@map" TileLayer="@tile" ClassCss="@mapCss" />
+</div>
+
+@code {
+    [Parameter]
+    public User? HostUser { get;set; }
+    [Parameter]
+    public Category? Category { get;set; }
+    [Parameter]
+    public Description? Description { get;set; }
+    [Parameter]
+    public Info? LocationInfo { get;set; }
+    [Parameter]
+    public Location? Location { get;set; }
+
+    private Data.CategoriesData.Category category;
+    private string mapCss = "w-full h-[35vh] rounded-lg";
+
+    protected override void OnParametersSet()
+    {
+        if(Category.HasValue)
+        {
+            category = Data.CategoriesData.Categories.FirstOrDefault(c => c.Label == Category.Value.Value);
+        }
+
+        if(Location.HasValue)
+        {
+            var location = Data.CountriesData.Countries[Location.Value.Value];
+
+            map = new Map(mapId, new MapOptions
+            {
+                Center = new LatLng(location.Latitude, location.Longitude),
+                Zoom = 4
+            });
+
+            tile = new TileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                new TileLayerOptions
+                {
+                    Attribution = @"Map data &copy; <a href=""https://www.openstreetmap.org/"">OpenStreetMap</a> contributors, " +
+                        @"<a href=""https://creativecommons.org/licenses/by-sa/2.0/"">CC-BY-SA</a>"
+                }
+            );
+        }
+    }
+
+    private Map map;
+    private TileLayer? tile;
+    private const string mapId = "locationMap";
+}
