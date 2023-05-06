@@ -1,3 +1,5 @@
+@using blazor_tailwind_airbnb.Services
+
 <Container>
     <div class="max-w-screen-lg mx-auto">
         <div class="flex flex-col gap-6">
@@ -16,9 +18,9 @@
                         md:order-last 
                         md:col-span-3
                     "
-            >
-              <ListingReservation Price="@(Listing.Price)" />
-            </div>
+                >
+                    <ListingReservation Listing="@Listing" OnCreateReservation="CreateNewReservation" />
+                </div>
             </div>
         </div>
     </div>
@@ -27,6 +29,8 @@
 @code {
     [Inject]
     public Services.IUsers Users { get;set; } = null!;
+    [Inject]
+    public IReservations Reservations { get;set; } = null!;
     [EditorRequired]
     [Parameter]
     public Listing Listing { get;set; }
@@ -38,6 +42,11 @@
     protected override async Task OnParametersSetAsync()
     {
         hostUser = await Users.GetUserById(Listing.Host);
+    }
+
+    private async Task CreateNewReservation((ListingId ListingId, DateRangeLocal DateRange) args)
+    {
+        await Reservations.AddReservation(Listing, args.DateRange.Start, args.DateRange.End);
     }
 }
 

@@ -14,6 +14,7 @@ builder.Services.AddSingleton<IUsers, Users>();
 builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
 builder.Services.AddSingleton<IListingsService, ListingService>();
 builder.Services.AddSingleton<IWishlist, Wishlist>();
+builder.Services.AddSingleton<IReservations, Reservations>();
 
 var app = builder.Build();
 

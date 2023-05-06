@@ -15,8 +15,5 @@ public class Reservations : IReservations
         throw new NotImplementedException();
     }
 
-    public Task<decimal> GetTotalPrice(Listing listing, DateOnly start, DateOnly end)
-    {
-        throw new NotImplementedException();
-    }
+    public Task<decimal> GetTotalPrice(Listing listing, DateOnly start, DateOnly end) => Task.FromResult(listing.Price.Value * (end.DayNumber - start.DayNumber));
 }

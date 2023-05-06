@@ -3,28 +3,27 @@
 <div class="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
     <div class="flex flex-row items-center gap-1 p-4">
         <div class="text-2xl font-semibold">
-            $ @Price.Value
+            $ @Listing.Price.Value
         </div>
         <div class="font-light text-neutral-600">
             night
         </div>
     </div>
     <hr />
-    <Calendar @bind-Value="@dateRange"/>
+    <Calendar @bind-Value="@dateRange" @bind-Value:after="UpdatePrice"/>
+    <hr />
+    <div class="p-4">
+        <Button Label="Reserve" OnClick="(_) => Submit()" />
+    </div>
+    <div class="p-4 flex flex-row items-center justify-between font-semibold text-lg">
+        @if(TotalPrice.HasValue)
+        {
+            <div>
+                Total
+            </div>
+            <div>
+                $ @TotalPrice.Value.Value
+            </div>
+        }
+    </div>
 </div>
-
-
-@code {
-    [Parameter]
-    public Price Price { get;set; }
-    [Parameter]
-    public Price TotalPrice { get;set; }
-    [Parameter]
-    public DateRangeLocal DateRange { get;set; }
-    [Parameter]
-    public bool Disabled { get;set; }
-    [Parameter]
-    public bool DisabledDates { get;set; }
-
-    private DateRangeLocal? dateRange;
-}
